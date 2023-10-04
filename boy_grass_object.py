@@ -1,6 +1,7 @@
 from pico2d import *
 import random
 
+
 # Game object class here
 class Grass:
     def __init__(self):
@@ -10,6 +11,7 @@ class Grass:
         self.image.draw(400, 30)
 
     def update(self): pass
+
 
 class Boy:
     def __init__(self):
@@ -22,13 +24,14 @@ class Boy:
         self.x += 5
 
     def draw(self):
-        self.image.clip_draw(self.frame*100, 0, 100, 100, self.x, self.y)
+        self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
+
 
 class Small_Ball:
     def __init__(self):
         self.x, self.y = random.randint(1, 799), 599
         self.image = load_image('ball21x21.png')
-        self.speed = random.randint(5,20)
+        self.speed = random.randint(5, 20)
 
     def update(self):
         if self.y <= 61 + self.speed:
@@ -39,11 +42,12 @@ class Small_Ball:
     def draw(self):
         self.image.clip_draw(0, 0, 21, 21, self.x, self.y)
 
+
 class Big_Ball:
     def __init__(self):
         self.x, self.y = random.randint(1, 799), 599
         self.image = load_image('ball41x41.png')
-        self.speed = random.randint(5,20)
+        self.speed = random.randint(5, 20)
 
     def update(self):
         if self.y <= 71 + self.speed:
@@ -86,22 +90,18 @@ def reset_world():
     world += small_ball
     world += big_ball
 
+
 def update_world():
     for o in world:
         o.update()
-    # grass.update()
-    # for boy in team:
-    #     boy.update()
-    # pass
+
 
 def rander_world():
     clear_canvas()
     for o in world:
         o.draw()
-    # grass.draw()
-    # for boy in team:
-    #     boy.draw()
     update_canvas()
+
 
 open_canvas()
 
